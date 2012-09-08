@@ -1,8 +1,8 @@
-;(function (ns, $) {
+;(function ($, undefined) {
 
   var $window = $(window);
 
-  ns.Backbone.Modal = ns.Backbone.View.extend({
+  Backbone.Modal = Backbone.View.extend({
 
     className: 'bb-modal-overlay',
 
@@ -13,14 +13,14 @@
     template: _.template([
       '<div class="bb-modal">',
         '<button class="bb-modal-close">',
-          '<%= buttonText %>', 
+          '<%= closeButtonText %>', 
         '</button>',
         '<div class="bb-modal-content"></div>',
       '</div>'
     ].join('')),
 
     initialize: function (options) {
-      var settings = _.extend({buttonText: 'x'}, options);
+      var settings = _.extend({closeButtonText: 'x'}, options);
 
       this.$el
         .css('display', 'none')
@@ -58,6 +58,7 @@
       
       if (canClose) {
         this.$el.hide();
+        this.trigger('close');
 
         if (typeof this.subject.afterModalClose === 'function') {
           this.subject.afterModalClose();
@@ -80,4 +81,4 @@
     }
   });
 
-}(this, jQuery || Zepto));
+}(jQuery || Zepto));

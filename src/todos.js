@@ -123,7 +123,7 @@ $(function(){
 
     // Switch this view into `"editing"` mode, displaying the input field.
     edit: function(ev) {
-      Modal.open(new TodoEditor({model: this.model}).render());
+      App.modal.open(new TodoEditor({model: this.model}).render());
       ev.preventDefault();
     },
 
@@ -161,7 +161,7 @@ $(function(){
         description: this.$('.desc').val(),
         done: this.$('.is-done').is(':checked')
       });
-      Modal.close();
+      App.modal.close();
       ev.preventDefault();
     }
   });
@@ -197,6 +197,11 @@ $(function(){
       Todos.on('add', this.addOne, this);
       Todos.on('reset', this.addAll, this);
       Todos.on('all', this.render, this);
+
+      this.modal = new Backbone.Modal();
+      this.modal.on('close', function () {
+        console.log('closed the modal');
+      });
 
       this.footer = this.$('footer');
       this.main = $('#main');
@@ -261,6 +266,5 @@ $(function(){
   var App = new AppView;
 
   // Finally, finally create single re-usable modal
-  var Modal = new Backbone.Modal();
 
 });
