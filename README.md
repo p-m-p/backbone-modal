@@ -3,7 +3,7 @@ Backbone Modal
 
 A light-weight modal made especially for use with Backbone.js. Opens
 a modal window that can be styled to fit your application to
-display a `view` within the modal content area.
+display a `Backbone.View` within the modal content area.
 
 Usage
 ---

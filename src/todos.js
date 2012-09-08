@@ -194,6 +194,7 @@ $(function(){
     // collection, when items are added or changed. Kick things off by
     // loading any preexisting todos that might be saved in *localStorage*.
     initialize: function() {
+      this.showIntro();
 
       this.input = this.$("#new-todo");
       this.allCheckbox = this.$("#toggle-all")[0];
@@ -260,8 +261,21 @@ $(function(){
     toggleAllComplete: function () {
       var done = this.allCheckbox.checked;
       Todos.each(function (todo) { todo.save({'done': done}); });
-    }
+    },
 
+    showIntro: function () {
+      var modal = new Backbone.Modal();
+
+      modal.open({
+        el: [
+          '<p>I\'ve hacked <a href="http://documentcloud.github.com/backbone/examples/todos/index.html">',
+          'Jérôme Gravel-Niquet\'s</a> Backbone Todos app to demonstrate the use of this Backbone Modal. ',
+          'Be sure to check out the Github repo and have some fun poking around!'
+        ].join('')
+      }, {width: '600px'});
+
+      modal.on('close', function () { modal.destroy() });
+    }
   });
 
   // Finally, we kick things off by creating the **App**.
