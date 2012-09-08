@@ -62,6 +62,12 @@ Fires once the modal has been successfully closed.
 ### `open`
 Fires once the modal has been successfully opened.
 
+### `resize`
+Fires once the modal has resized.
+
+### `destroy`
+Fires once the modal has been destroyed.
+
 Hooks
 ---
 The view that is displayed within the modal may implement the 

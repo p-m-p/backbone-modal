@@ -41,12 +41,16 @@
     },
 
     open: function (view, settings) {
+      var that = this;
+
       if (view) {
         this.subject = view;
         this.render(settings);
       }
 
-      this.$el.fadeIn(150);
+      this.$el.fadeIn(150, function () {
+        that.trigger('open');
+      });
     },
 
     close: function (ev) {
@@ -73,11 +77,13 @@
         width: $window.width(),
         height: $window.height()
       });
+      this.trigger('resize');
     },
 
     destroy: function () {
       this.$el.remove();
       $window.off('resize', this.resize);
+      this.trigger('destroy');
     }
   });
 
