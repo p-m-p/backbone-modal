@@ -11,7 +11,8 @@
   margin: 40px auto;
   position: relative;
   padding: 20px;
-  border: solid 4px #ddd; }
+  border: solid 4px #ddd;
+  border-radius: 12px; }
 
 .bb-modal-close {
   position: absolute;

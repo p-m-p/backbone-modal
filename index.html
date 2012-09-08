@@ -66,17 +66,16 @@
 
   <script type="text/template" id="editor-template">
     <fieldset>
+      <legend>Edit this todo</legend>
       <div class="row">
         <input class="title" type="text" name="title" value="<%- title %>">
       </div>
       <div class="row">
-        <textarea class="desc" name="desc" placeholder="more information&hellip;"><%- description %></textarea>
+        <textarea rows="5" class="desc" name="desc" placeholder="more information&hellip;"><%- description %></textarea>
       </div>
-      <div class="row">
-        <input class="is-done" type="checkbox" name="title" value="yes"<%= done ? ' checked' : ''%>>
-        <label>Done?</label>
-      </div>
-      <div class="row">
+      <div class="row buttons">
+        <input id="is-done" class="is-done" type="checkbox" name="title" value="yes"<%= done ? ' checked' : ''%>>
+        <label for="is-done">Done?</label>
         <input type="submit" name="save" value="Save">
       </div>
     </fieldset>

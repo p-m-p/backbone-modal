@@ -123,7 +123,9 @@ $(function(){
 
     // Switch this view into `"editing"` mode, displaying the input field.
     edit: function(ev) {
-      App.modal.open(new TodoEditor({model: this.model}).render());
+      App.modal.open(new TodoEditor({model: this.model}).render(), {
+        width: '440px'
+      });
       ev.preventDefault();
     },
 
@@ -138,6 +140,7 @@ $(function(){
   // Todo Editor View
   // ----------------
 
+  // Form for editing a model in the modal
   var TodoEditor = Backbone.View.extend({
     
     tagName: 'form',
@@ -155,6 +158,7 @@ $(function(){
       return this;
     },
 
+    // save the todo and hide the modal
     save: function (ev) {
       this.model.save({
         title: this.$('.title').val(),
@@ -197,12 +201,10 @@ $(function(){
       Todos.on('add', this.addOne, this);
       Todos.on('reset', this.addAll, this);
       Todos.on('all', this.render, this);
-
+      
+      // create a single modal to use for editing
+      // all todos
       this.modal = new Backbone.Modal();
-      this.modal.on('close', function () {
-        console.log('closed the modal');
-      });
-
       this.footer = this.$('footer');
       this.main = $('#main');
 
@@ -264,7 +266,5 @@ $(function(){
 
   // Finally, we kick things off by creating the **App**.
   var App = new AppView;
-
-  // Finally, finally create single re-usable modal
 
 });

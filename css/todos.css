@@ -120,11 +120,12 @@ body {
 }
 
 .item-desc {
-  margin: .2em 0 0;
-  padding: 0;
+  margin: .4em 0 0;
+  padding: 4px 0 0;
   font-style: italic;
-  font-size: .75em;
+  font-size: .7em;
   color: #999;
+  border-top: dashed 2px #efefef;
 }
 
 .done .item-desc {
@@ -209,3 +210,30 @@ body {
 #credits a {
 	color: #888;
 }
+
+.editor fieldset {
+  border: solid 1px #eee;
+  padding-top: 10px;
+}
+
+.editor legend {
+  background: #fff;
+  color: #222;
+  padding: 2px 6px;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.row { margin: 0 0 10px }
+.row:last-child { margin: 0 }
+
+.row input[type=text],
+.row textarea {
+  width: 96%;
+  padding: 2%;
+  border: solid 1px #ddd;
+  border-radius: 6px;
+  font-size: 2em;
+}
+
+.buttons { text-align: right }
