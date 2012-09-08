@@ -1,0 +1,29 @@
+.bb-modal-overlay {
+  background-color: rgba(238, 238, 238, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto; }
+
+.bb-modal {
+  background-color: white;
+  min-width: 320px;
+  margin: 40px auto;
+  position: relative;
+  padding: 20px;
+  border: solid 4px #ddd; }
+
+.bb-modal-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  border: solid 4px #ddd;
+  background-color: #999;
+  color: white;
+  border-radius: 16px;
+  width: 32px;
+  height: 32px;
+  display: block;
+  margin: 0;
+  padding: 0 0 2px;
+  font: 700 16px/1 Helvetica, Arial, sans-serif; }
