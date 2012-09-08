@@ -27,7 +27,7 @@
         .append(this.template(settings))
         .appendTo('body');
       this.resize();
-      $window.on('resize', this.resize);
+      $window.on('resize', _.bind(this.resize, this));
     },
 
     render: function (options) {
