@@ -74,7 +74,7 @@ The view that is displayed within the modal may implement the
 following hook methods to run at certain times during the modal
 windows life cycle.
 
-### `onBeforeModalClose`
+### `beforeModalClose`
 This hook allows the view to stop the closing process if, for instance,
 further actions from the user are required. To stop the modal from closing
 this method should return false. If the modal can close the method
