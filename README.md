@@ -82,7 +82,7 @@ should return true.
 ```javascript
 var view = Backbone.view.extend({
   // blah blah
-  onBeforeModalClose: function () {
+  beforeModalClose: function () {
     var okToClose = true;
 
     if (this.model.hasChanged()) {
