@@ -124,7 +124,7 @@ $(function(){
     // Switch this view into `"editing"` mode, displaying the input field.
     edit: function(ev) {
       App.modal.open(new TodoEditor({model: this.model}).render(), {
-        width: '440px'
+        css: { width: '440px' }
       });
       ev.preventDefault();
     },
