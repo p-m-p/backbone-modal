@@ -72,8 +72,8 @@
     close: function (ev) {
       var canClose = true;
 
-      if (typeof this.subject.beforeModalClase === 'function') {
-        canClase = this.subject.beforeModalClose();
+      if (typeof this.subject.beforeModalClose === 'function') {
+        canClose = this.subject.beforeModalClose();
       }
       
       if (canClose) {

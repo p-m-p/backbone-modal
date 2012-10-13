@@ -2,19 +2,23 @@
 
   var env = jasmine.getEnv()
     , $window = $(window)
-    , report = new jasmine.HtmlReporter
-    , view;
-
-  env.addReporter(report);
-
-  view = new (Backbone.View.extend({
-    className: 'test-view',
-    template: _.template('<p style="background: blue">Hello world!</p>'),
-    render: function () { this.$el.html(this.template()); return this; }
-  }));
+    , report = new jasmine.HtmlReporter;
 
   describe('Modal life cycle', function () {
-    var modal = new Backbone.Modal;
+    var modal, view;
+
+    beforeEach(function () {
+      modal = new Backbone.Modal;
+      view = new (Backbone.View.extend({
+        className: 'test-view',
+        template: _.template('<p style="background: blue">Hello world!</p>'),
+        render: function () { this.$el.html(this.template()); return this; }
+      }));
+    });
+
+    afterEach(function () {
+      modal.destroy();
+    });
 
     it('should create the Modal', function () {
       var $modal = $('.bb-modal-overlay');
@@ -41,22 +45,54 @@
     });
 
     it('should close the Modal', function () {
-      modal.close();
+      modal.open(view.render()).close();
 
       expect(modal.$el.is(':hidden')).toBe(true);
     });
 
     it('should destroy the Modal', function () {
-      modal.destroy();
+      modal.open(view.render()).destroy();
 
       expect($('.bb-modal-overlay').length).toBe(0);
     });
   });
 
   describe('Modal Hooks', function () {
-    
+    var modal
+      , view
+      , completedHooks = {};
+
+    beforeEach(function () {
+      modal = new Backbone.Modal;
+      view = new (Backbone.View.extend({
+        className: 'test-view',
+        template: _.template('<p style="background: blue">Hello world!</p>'),
+        render: function () { this.$el.html(this.template()); return this; },
+        beforeModalClose: function () {
+          completedHooks.before = this === view;
+          return false;
+        },
+        afterModalClose: function () { completedHooks.after = this === view; }
+      }));
+    });
+
+    afterEach(function () {
+      modal.destroy();
+      completedHooks = {
+        before: false,
+        after: false
+      };
+    });
+
+    it('should run the before close hook and stop close', function () {
+      modal.open(view.render()).close();
+
+      expect(completedHooks.before).toBe(true);
+      expect(modal.$el.is(':visible')).toBe(true);
+    });
   });
 
+  env.addReporter(report);
   env.execute();
 
 }());
